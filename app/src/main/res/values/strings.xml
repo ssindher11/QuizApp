@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Quiz App</string>
+    <string name="start_quiz">Start Quiz</string>
+    <string name="quiz">Quiz</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="completed">Completed</string>
+    <string name="ongoing">Ongoing</string>
+    <string name="not_found">Not Found</string>
+    <string name="we_can_t_seem_to_find_any_upcoming_quiz_here">We can\'t seem to find any \nUpcoming quiz here</string>
+    <string name="close">Close</string>
+    <string name="i_accept_all_the_terms_and_instructions">I accept all the terms and instructions.</string>
+    <string name="start_test">Start Test</string>
+    <string name="flag">Flag</string>
+    <string name="timeline">Timeline</string>
+    <string name="finish">Finish</string>
+    <string name="scq">SCQ</string>
+    <string name="choose_an_option">Choose an option:</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="internet_disconnected">Internet Disconnected</string>
+    <string name="some_error_occurred">Some error occurred!</string>
+    <string name="please_flag_appropriate_problem">Please flag appropriate problem</string>
+    <string name="subject_is_incorrect">Subject is incorrect</string>
+    <string name="options_are_incorrect">Options are incorrect</string>
+    <string name="question_is_incorrect">Question is incorrect</string>
+    <string name="any_specific_reason">Any Specific Reason</string>
+    <string name="submit">Submit</string>
+</resources>
