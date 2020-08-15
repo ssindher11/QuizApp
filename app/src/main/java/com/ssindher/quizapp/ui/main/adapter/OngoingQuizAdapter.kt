@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.ssindher.quizapp.R
-import com.ssindher.quizapp.data.automodels.Ongoing
+import com.ssindher.quizapp.data.allquizzesmodels.Ongoing
 import com.ssindher.quizapp.ui.main.view.activity.QuizInfoActivity
 import com.ssindher.quizapp.utils.AppConstants.DURATION
 import com.ssindher.quizapp.utils.AppConstants.QUIZ_ID
@@ -31,7 +31,6 @@ class OngoingQuizAdapter(private val quizzes: ArrayList<Ongoing>) :
                     Toast.makeText(itemView.context, "Details of the Quiz", Toast.LENGTH_SHORT)
                         .show()
                 }
-                // TODO: Start the quiz
                 imageViewQuizStart.setOnClickListener {
                     val intent = Intent(context, QuizInfoActivity::class.java)
                     intent.putExtra(TITLE, ongoing.quizDetails[0].name)

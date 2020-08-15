@@ -1,4 +1,4 @@
-package com.ssindher.quizapp.data.automodels
+package com.ssindher.quizapp.data.allquizzesmodels
 
 data class BatchX(
     val completed: List<Completed>,

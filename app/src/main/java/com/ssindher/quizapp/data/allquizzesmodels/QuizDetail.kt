@@ -1,6 +1,6 @@
-package com.ssindher.quizapp.data.automodels
+package com.ssindher.quizapp.data.allquizzesmodels
 
-data class QuizDetailX(
+data class QuizDetail(
     val __v: Int,
     val _id: String,
     val courseId: String,
@@ -14,6 +14,6 @@ data class QuizDetailX(
     val published: Boolean,
     val quizMarks: Int,
     val quizType: Int,
-    val settings: SettingsXX,
+    val settings: SettingsX,
     val updated_at: String
 )

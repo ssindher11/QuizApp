@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.ssindher.quizapp.R
-import com.ssindher.quizapp.data.automodels.Completed
+import com.ssindher.quizapp.data.allquizzesmodels.Completed
 import com.ssindher.quizapp.utils.Utils
 import kotlinx.android.synthetic.main.item_quiz.view.*
 
@@ -18,7 +18,7 @@ class CompletedQuizAdapter(private val completedList: ArrayList<Completed>) :
         fun bind(completed: Completed) {
             itemView.apply {
                 textViewQuizTitle.text = completed.quizDetails[0].name
-                textViewQuizDuration.text = "${completed.quizDetails[0].duration.toString()} mins"
+                textViewQuizDuration.text = "${completed.quizDetails[0].duration} mins"
                 val startTime = completed.scheduleStart
                 val endTime = completed.scheduleEnd
                 textViewQuizTimings.text = Utils.parseDate(startTime, endTime)

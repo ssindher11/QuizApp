@@ -25,4 +25,11 @@
     <string name="question_is_incorrect">Question is incorrect</string>
     <string name="any_specific_reason">Any Specific Reason</string>
     <string name="submit">Submit</string>
+    <string name="analysis">Analysis</string>
+    <string name="accuracy">Accuracy</string>
+    <string name="correctly_answered_questions">Correctly Answered Questions</string>
+    <string name="wrongly_answered_questions">Wrongly Answered Questions</string>
+    <string name="response_time">Response Time</string>
+    <string name="total_score">Total Score</string>
+    <string name="questions_attempted">Questions Attempted</string>
 </resources>

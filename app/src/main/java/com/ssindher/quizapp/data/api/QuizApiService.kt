@@ -1,7 +1,6 @@
 package com.ssindher.quizapp.data.api
 
-import com.ssindher.quizapp.data.automodels.Q1
-import com.ssindher.quizapp.data.model.ParticularQuiz
+import com.ssindher.quizapp.data.allquizzesmodels.Q1
 import com.ssindher.quizapp.data.quizmodels.Q2
 import retrofit2.http.GET
 

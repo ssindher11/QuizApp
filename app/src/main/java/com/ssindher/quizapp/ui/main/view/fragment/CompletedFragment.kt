@@ -10,9 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.ssindher.quizapp.R
+import com.ssindher.quizapp.data.allquizzesmodels.Completed
 import com.ssindher.quizapp.data.api.ApiHelper
 import com.ssindher.quizapp.data.api.RetrofitBuilder
-import com.ssindher.quizapp.data.automodels.Completed
 import com.ssindher.quizapp.ui.base.ViewModelFactory
 import com.ssindher.quizapp.ui.main.adapter.CompletedQuizAdapter
 import com.ssindher.quizapp.ui.main.viewmodel.MainViewModel
@@ -67,7 +67,8 @@ class CompletedFragment : Fragment() {
                                 imageViewNotFoundCompleted.visibility = View.VISIBLE
                                 textViewNotFoundCompleted.visibility = View.VISIBLE
                             }
-                            retrieveList(q1.batch.completed) }
+                            retrieveList(q1.batch.completed)
+                        }
                     }
                     Status.ERROR -> {
                         recyclerViewCompleted.visibility = View.GONE

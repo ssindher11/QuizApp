@@ -1,6 +1,6 @@
-package com.ssindher.quizapp.data.automodels
+package com.ssindher.quizapp.data.allquizzesmodels
 
-data class SettingsXX(
+data class SettingsX(
     val attempts: Int,
     val isSuffle: Boolean,
     val `public`: Boolean,
