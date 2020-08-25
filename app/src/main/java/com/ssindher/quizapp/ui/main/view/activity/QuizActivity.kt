@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.bugfender.sdk.Bugfender
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -71,6 +72,7 @@ class QuizActivity : AppCompatActivity() {
         setupViewModel()
         setupObservers()
         setupOnClickListeners()
+        Bugfender.d("Activity", "QuizActivity")
 
         optionAdapter = OptionAdapter(arrayListOf(), null)
         recyclerViewQuiz.adapter = optionAdapter
@@ -206,6 +208,7 @@ class QuizActivity : AppCompatActivity() {
         )
 
         questionIndex += 1
+        Bugfender.d("Action", "Next Question: ${questionDataList[questionIndex]._id}")
         if (questionIndex == questionDataList.size - 1) {
             buttonNextQuiz.text = getString(R.string.finish)
         }
@@ -223,6 +226,7 @@ class QuizActivity : AppCompatActivity() {
         if (questionIndex != 0) {
             questionIndex -= 1
         }
+        Bugfender.d("Action", "Previous Question: ${questionDataList[questionIndex]._id}")
         setupUI(questionIndex)
     }
 
@@ -295,6 +299,10 @@ class QuizActivity : AppCompatActivity() {
             checkHashMap[questionDataList[questionIndex]._id]
         )
         val result = getCorrectAndWrongAnswers()
+        Bugfender.d("Action", "Finish Quiz")
+        Bugfender.d("ScoreCalculated", "Score = ${calculateTotal()}")
+        Bugfender.removeDeviceKey("quiz.id")
+
         val i = Intent(this@QuizActivity, AnalysisActivity::class.java)
         i.putExtra(TOTAL_SCORE, calculateTotal())
         i.putExtra(DURATION, duration)

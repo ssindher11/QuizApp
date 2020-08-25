@@ -1,4 +1,5 @@
 <resources>
+    <string name="bugfender_key">g4heek7vQsawEH9zswv53YyBwmhqD5TR</string>
     <string name="app_name">Quiz App</string>
     <string name="start_quiz">Start Quiz</string>
     <string name="quiz">Quiz</string>

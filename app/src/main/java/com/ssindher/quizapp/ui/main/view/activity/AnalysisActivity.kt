@@ -3,6 +3,7 @@ package com.ssindher.quizapp.ui.main.view.activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.bugfender.sdk.Bugfender
 import com.ssindher.quizapp.R
 import com.ssindher.quizapp.utils.AppConstants.CORRECT
 import com.ssindher.quizapp.utils.AppConstants.DURATION
@@ -24,6 +25,7 @@ class AnalysisActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_analysis)
+        Bugfender.d("Activity", "AnalysisActivity")
 
         getIntentData()
         setupUI()
