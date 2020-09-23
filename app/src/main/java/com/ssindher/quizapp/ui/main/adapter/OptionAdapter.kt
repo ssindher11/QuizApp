@@ -18,6 +18,7 @@ data class OptionAdapter(val options: ArrayList<Option>, var checkedItemId: Stri
     inner class OptionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         lateinit var op: Option
+        private val tempString = Utils.getScaledImageIfTooLarge(Utils.tempString)
 
         @SuppressLint("SetJavaScriptEnabled")
         fun bind(option: Option) {
@@ -27,13 +28,13 @@ data class OptionAdapter(val options: ArrayList<Option>, var checkedItemId: Stri
             itemView.apply {
                 if (option._id != checkedItemId) {
                     webViewOption.loadDataWithBaseURL(
-                        "", Utils.getHtml(option.value), "text/html",
+                        "", Utils.getHtml(tempString), "text/html",
                         "UTF-8",
                         null
                     )
                 } else {
                     webViewOption.loadDataWithBaseURL(
-                        "", Utils.getSelectedHtml(option.value), "text/html",
+                        "", Utils.getSelectedHtml(tempString), "text/html",
                         "UTF-8",
                         null
                     )
@@ -52,14 +53,14 @@ data class OptionAdapter(val options: ArrayList<Option>, var checkedItemId: Stri
                     )
                     if (checked) {
                         webViewOption.loadDataWithBaseURL(
-                            "", Utils.getSelectedHtml(option.value), "text/html",
+                            "", Utils.getSelectedHtml(tempString), "text/html",
                             "UTF-8",
                             null
                         )
                         QuizActivity.markAnswerInterface.mark(Answer(option._id, option.correct))
                     } else {
                         webViewOption.loadDataWithBaseURL(
-                            "", Utils.getHtml(option.value), "text/html",
+                            "", Utils.getHtml(tempString), "text/html",
                             "UTF-8",
                             null
                         )

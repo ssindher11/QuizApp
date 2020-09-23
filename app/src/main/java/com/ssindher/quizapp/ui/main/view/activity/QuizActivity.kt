@@ -3,10 +3,12 @@ package com.ssindher.quizapp.ui.main.view.activity
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.media.projection.MediaProjectionManager
 import android.net.ConnectivityManager
 import android.net.Network
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -17,6 +19,8 @@ import com.bugfender.sdk.Bugfender
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.hbisoft.hbrecorder.HBRecorder
+import com.hbisoft.hbrecorder.HBRecorderListener
 import com.ssindher.quizapp.R
 import com.ssindher.quizapp.`interface`.MarkAnswerInterface
 import com.ssindher.quizapp.data.api.ApiHelper
@@ -43,7 +47,7 @@ import com.ssindher.quizapp.utils.Status
 import com.ssindher.quizapp.utils.Utils
 import kotlinx.android.synthetic.main.activity_quiz.*
 
-class QuizActivity : AppCompatActivity() {
+class QuizActivity : AppCompatActivity(), HBRecorderListener {
 
     private lateinit var viewModel: MainViewModel
     private lateinit var questionDataList: List<Data>
@@ -52,6 +56,7 @@ class QuizActivity : AppCompatActivity() {
     private lateinit var countDownTimer: CountDownTimer
     private lateinit var questionsReference: DatabaseReference
     private lateinit var totalScoreReference: DatabaseReference
+    private lateinit var hbRecorder: HBRecorder
 
     private var timeInMs = 0L
     private var duration = 0L
@@ -63,6 +68,8 @@ class QuizActivity : AppCompatActivity() {
 
     companion object {
         lateinit var markAnswerInterface: MarkAnswerInterface
+        val TAG = "QuizActivityTAG"
+        val SCREEN_RECORD_REQUEST_CODE = 1001
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,6 +80,7 @@ class QuizActivity : AppCompatActivity() {
         setupObservers()
         setupOnClickListeners()
         Bugfender.d("Activity", "QuizActivity")
+        hbRecorder = HBRecorder(this, this)
 
         optionAdapter = OptionAdapter(arrayListOf(), null)
         recyclerViewQuiz.adapter = optionAdapter
@@ -81,6 +89,8 @@ class QuizActivity : AppCompatActivity() {
         timeInMs = intent.extras?.get(DURATION).toString().toLong() * 60000L
         duration = timeInMs
         setupTimer()
+
+        startRecordingScreen()
     }
 
     private fun setupViewModel() {
@@ -345,5 +355,56 @@ class QuizActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         showFinishDialog()
+    }
+
+    private fun startRecordingScreen() {
+        val mediaProjectionManager =
+            getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager?
+        val permissionIntent = mediaProjectionManager?.createScreenCaptureIntent()
+        startActivityForResult(permissionIntent, SCREEN_RECORD_REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == SCREEN_RECORD_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                hbRecorder.startScreenRecording(data, resultCode, this)
+            }
+        }
+    }
+
+    override fun HBRecorderOnStart() {
+        Log.d(TAG, "onRecordStart")
+    }
+
+    override fun HBRecorderOnComplete() {
+        Log.d(TAG, "onRecordComplete")
+    }
+
+    override fun HBRecorderOnError(errorCode: Int, reason: String?) {
+        Log.d(TAG, "Error code: $errorCode")
+        Log.d(TAG, "Reason: $reason")
+        Toast.makeText(this, reason, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (hbRecorder.isBusyRecording) {
+            hbRecorder.pauseScreenRecording()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (hbRecorder.isRecordingPaused) {
+            hbRecorder.resumeScreenRecording()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (hbRecorder.isBusyRecording) {
+            hbRecorder.stopScreenRecording()
+        }
     }
 }

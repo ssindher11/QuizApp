@@ -41,4 +41,18 @@ object Utils {
         html += "</html>"
         return html
     }
+
+    const val tempString =
+        "<p width=\"100%\"><br><img class=\"fr-dib fr-fil\" src=\"https://winuall-lms.s3.ap-south-1.amazonaws.com/files/edsejLJyLsV3YSIiOfu5CsBS9OHR6EEK0yt2vvPK.png#674*50\" style=\"width: 408px;\" max-height=\"95%\" max-width=\"95%\"></p>"
+
+    fun getScaledImageIfTooLarge(s: String): String {
+        val t1 = s.split("width: ")
+        val width = t1[1].split("px")[0].toInt()
+
+        return if (width <= 200) {
+            s
+        } else {
+            t1[0] + "width: 200px" + t1[1].split("px")[1]
+        }
+    }
 }
