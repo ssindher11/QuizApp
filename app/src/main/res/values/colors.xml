@@ -12,4 +12,8 @@
     <color name="yellow">#FDC94F</color>
     <color name="violet">#A457FF</color>
     <color name="darkBlue">#051838</color>
+
+    <color name="welcome_text_color">#FF0000</color>
+    <color name="sky_blue">#6698FF</color>
+    <color name="green_apple">#629632</color>
 </resources>

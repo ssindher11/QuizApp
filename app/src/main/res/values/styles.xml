@@ -18,4 +18,29 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="RedTheme">
+        <item name="colorPrimary">#ef5350</item>
+        <item name="colorPrimaryDark">#b71c1c</item>
+        <item name="colorAccent">#ff5722</item>
+
+        <item name="materialButtonStyle">@style/material_button_red_style</item>
+    </style>
+
+    <style name="GreenTheme">
+        <item name="colorPrimary">#4caf50</item>
+        <item name="colorPrimaryDark">#1b5e20</item>
+        <item name="colorAccent">#009688</item>
+
+        <item name="materialButtonStyle">@style/material_button_green_style</item>
+    </style>
+
+    <style name="material_button_red_style" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">#ef5350</item>
+        <item name="android:inset">0dp</item>
+    </style>
+
+    <style name="material_button_green_style" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">#4caf50</item>
+        <item name="android:inset">0dp</item>
+    </style>
 </resources>

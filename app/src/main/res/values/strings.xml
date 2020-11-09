@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Quiz App</string>
+    <string name="instabug_key">392a9dda52850c3da86ba667da4d20e8</string>
     <string name="start_quiz">Start Quiz</string>
     <string name="quiz">Quiz</string>
     <string name="upcoming">Upcoming</string>
